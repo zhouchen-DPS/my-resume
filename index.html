@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zhou Chen - Full-Stack, Preparing For AGI. AI Explorer and Practitioner. 个人展示网站。">
+  <title>ZHOU CHEN · Personal Website</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=Poppins:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar">
+<div class="nav-links" id="navLinks">
+      <a href="#hero"      class="nav-link active" data-section="hero">Home</a>
+      <a href="#strengths" class="nav-link" data-section="strengths">Strengths</a>
+      <a href="#journey"   class="nav-link" data-section="journey">Journey</a>
+      <a href="#projects"  class="nav-link" data-section="projects">Projects</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="打开菜单">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Full-Screen Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <button class="mobile-close" id="mobileClose" aria-label="关闭菜单">&#10005;</button>
+    <nav class="mobile-nav">
+      <a href="#hero"      class="mobile-nav-link">Home<span>主页</span></a>
+      <a href="#strengths" class="mobile-nav-link">Strengths<span>独特优势</span></a>
+      <a href="#journey"   class="mobile-nav-link">Journey<span>过往历程</span></a>
+      <a href="#projects"  class="mobile-nav-link">Projects<span>精彩项目</span></a>
+    </nav>
+  </div>
+
+  <!-- ===== CONTACT FLOAT ===== -->
+  <div class="contact-float">
+    <button class="contact-btn" id="wechatBtn" title="微信 / 电话">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9.5 4C5.36 4 2 6.92 2 10.5c0 1.95 1.01 3.69 2.6 4.88L4 17.5l2.37-1.18A8.3 8.3 0 009.5 17c.34 0 .67-.02 1-.05A5.97 5.97 0 0010 15c0-3.31 2.91-6 6.5-6 .23 0 .46.01.68.03C16.17 6.66 13.1 4 9.5 4zm-2 4.5a1 1 0 110 2 1 1 0 010-2zm4 0a1 1 0 110 2 1 1 0 010-2z"/>
+        <path d="M16.5 11C13.46 11 11 13.01 11 15.5c0 2.48 2.46 4.5 5.5 4.5.8 0 1.56-.15 2.24-.42L21 20.5l-.56-1.96C21.4 17.67 22 16.63 22 15.5c0-2.49-2.46-4.5-5.5-4.5zm-2 3.5a.75.75 0 110 1.5.75.75 0 010-1.5zm2 0a.75.75 0 110 1.5.75.75 0 010-1.5zm2 0a.75.75 0 110 1.5.75.75 0 010-1.5z"/>
+      </svg>
+    </button>
+    <button class="contact-btn" id="emailBtn" title="邮箱">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Email Modal -->
+  <div class="modal-overlay" id="emailModal" role="dialog" aria-modal="true" aria-label="邮箱">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="emailModalClose" aria-label="关闭">&#10005;</button>
+      <h3 class="modal-title">邮箱</h3>
+      <div class="modal-body">
+        <p class="modal-email">zhou_chen_@126.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WeChat Modal -->
+  <div class="modal-overlay" id="wechatModal" role="dialog" aria-modal="true" aria-label="联系方式">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modalClose" aria-label="关闭">&#10005;</button>
+      <h3 class="modal-title">联系我</h3>
+      <div class="modal-body">
+        <div class="modal-qr-wrap">
+          <img src="assets/images/wechat-qr.png" alt="微信二维码">
+        </div>
+        <p class="modal-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.64a16 16 0 006.29 6.29l1.36-1.36a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          158 5182 1201
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg">
+      <div class="hero-bg-circle hero-bg-circle--1"></div>
+      <div class="hero-bg-circle hero-bg-circle--2"></div>
+    </div>
+
+    <div class="hero-person" id="heroPerson">
+      <img src="assets/images/hero-photo.png" alt="Zhou Chen">
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Full-Stack &nbsp;·&nbsp; AI &nbsp;·&nbsp; Brand Strategy</div>
+      <h1 class="hero-name">ZHOU CHEN</h1>
+      <p class="hero-subtitle">AI Explorer and Practitioner</p>
+      <p class="hero-motto">Full-Stack, Preparing For AGI</p>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"><div class="scroll-dot"></div></div>
+    </div>
+  </section>
+
+  <!-- ===== STRENGTHS ===== -->
+  <section id="strengths">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">MY STRENGTHS</h2>
+        <p class="section-subtitle">独特优势</p>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="strengths-grid">
+        <!-- Left: Professional Edge -->
+        <div class="strengths-col" data-aos="fade-right" data-aos-delay="100">
+          <div class="col-header">
+            <h3>Professional Advantage</h3>
+            <p class="col-subtitle">专业优势</p>
+          </div>
+          <div class="strength-card">
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="150">
+              <i data-lucide="code-2" class="item-icon"></i>
+              <p>拥有技术背景，对技术保持敏感和热忱，对互联网技术域、技术组织以及开发者圈层有较强的认知。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="250">
+              <i data-lucide="megaphone" class="item-icon"></i>
+              <p>拥有丰富的技术品牌建设经验，结合内外部的技术发展，能够挖掘提炼技术产品核心能力，并结合品牌打法，对内增强员工认同感，对外提升技术影响力。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="350">
+              <i data-lucide="pen-tool" class="item-icon"></i>
+              <p>拥有扎实的文字功底、创意的内容生产能力，全流程的活动策划落地能力，能从"事件活动、内容传播、新媒体运营、生态合作、人物 IP"等方面体系化输出技术品牌策略，传递技术价值和影响力。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="450">
+              <i data-lucide="network" class="item-icon"></i>
+              <p>在技术生态方面，通过内容合作、活动打造、品牌资源等，链接了较为丰富的开发者社区、技术媒介、学会、高校等合作关系。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="550">
+              <i data-lucide="smile" class="item-icon"></i>
+              <p>具有优秀的沟通协调落地能力，有创意，能拿结果，性格乐观、皮实、自省。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: AI Advantage -->
+        <div class="strengths-col" data-aos="fade-left" data-aos-delay="100">
+          <div class="col-header">
+            <h3>AI Advantage</h3>
+            <p class="col-subtitle">AI 优势</p>
+          </div>
+          <div class="strength-card">
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="150">
+              <i data-lucide="brain" class="item-icon"></i>
+              <p>理解机器学习、深度学习、NLP 等基础原理，熟悉 Transformer 架构与扩散模型等核心机制，能从原理角度理解大语言模型、多模态模型的生成逻辑。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="250">
+              <i data-lucide="trending-up" class="item-icon"></i>
+              <p>保持对 AI 技术趋势的持续跟进，具备对多模态、AI Agent、模型私有化等方向的前沿认知；能够从技术演进中洞察未来业务应用机会，具备判断模型能力边界与潜在风险的能力。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="350">
+              <i data-lucide="layers" class="item-icon"></i>
+              <p>熟练掌握主流 AI 工具与平台（GPT / Gemini / Claude / Doubao 等大模型，SD / ComfyUI / Seedream 图像模型，Kling / Seedance / Veo 视频模型，Cosyvoice / MiniMax 语音模型等），掌握多模态提示词结构化写法与优化技巧。</p>
+            </div>
+            <div class="strength-item" data-aos="fade-up" data-aos-delay="450">
+              <i data-lucide="bot" class="item-icon"></i>
+              <p>熟练掌握 AI Agent 构建与低代码开发工具链：基于 Vibe Coding 理念，利用 Claude Code、Lovable 进行独立应用搭建；精通 AI Agent 任务拆解与技能配置，实现飞书、Figma 等多平台自动化工作流集成。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNEY ===== -->
+  <section id="journey">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">MY JOURNEY</h2>
+        <p class="section-subtitle">过往历程</p>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-track">
+          <div class="timeline-track-fill" id="timelineFill"></div>
+        </div>
+
+        <!-- Entry 1 -->
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="50">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2009.07 – 2012.03</span>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-company">富士康科技集团</div>
+            <div class="timeline-role">软件开发工程师 &nbsp;·&nbsp; 工管资讯事业群 MES 事业部</div>
+            <p class="timeline-desc">熟悉 C# 语言，熟练基于 ASP.NET 的 Web 开发，熟练使用 VS；熟悉 SQLServer 等主流数据库，根据设计文档或需求说明完成 MES 系统的代码编写、调试、测试和维护。</p>
+          </div>
+        </div>
+
+        <!-- Entry 2 -->
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2012.03 – 2015.04</span>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-company">南京三宝科技股份有限公司</div>
+            <div class="timeline-role">市场营销 / 技术支持 &nbsp;·&nbsp; 集团市场部智能交通业务</div>
+            <p class="timeline-desc">负责智能交通行业市场洞察与竞品分析；规划撰写公司宣传内容，管理官网与 OA 新闻平台；策划执行行业会议会展；负责公司产品展示内容策划与展厅持续运营。</p>
+          </div>
+        </div>
+
+        <!-- Entry 3 -->
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2015.05 – 2020.04</span>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-company">苏宁易购</div>
+            <div class="timeline-role">技术体系品牌负责人（技术品牌总监）</div>
+            <p class="timeline-desc">全面负责易购技术品牌在行业内的影响力建设，以"场景零售 OS—RaaS"为品牌传播心智，统筹技术体系活动营销、内容传播、媒介维护、开发者运营及生态合作（三方企业、高校、协会学会等），输出易购技术影响力。</p>
+          </div>
+        </div>
+
+        <!-- Entry 4 -->
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2020.04 – 2024.06</span>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-company">阿里巴巴</div>
+            <div class="timeline-role">技术品牌专家 &nbsp;·&nbsp; CTO 办公室 / 技术文化部门</div>
+            <p class="timeline-desc">通过品牌事件打造、创意内容策划、技术干货传播、技术文化运营、内外部社区协作，对内增强员工认同感，对外提升阿里技术影响力。主导 1024 技术节、双 11 技术大团建、奇点杯·技术创新季等年度重点品牌 IP。</p>
+          </div>
+        </div>
+
+        <!-- Entry 5 (current) -->
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="250">
+          <div class="timeline-dot timeline-dot--current"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2024.08 – 至今</span>
+          </div>
+          <div class="timeline-card timeline-card--current">
+            <span class="timeline-now-tag">进行中</span>
+            <div class="timeline-company">罗莱生活科技股份有限公司</div>
+            <div class="timeline-role">人力资源总监兼 OC 负责人</div>
+            <p class="timeline-desc">基于组织方法论，以业务与组织双视角，从"活力、创新和协同"三个维度构建组织文化解决方案，制定并推动年度组织文化在全公司落地。推动 AI 数智化激励体系建设，主导价值观升级（"客户为先"升级为"用户为先"）及重点文化项目落地。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">FEATURED PROJECTS</h2>
+        <p class="section-subtitle">精彩项目</p>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-company-tag">阿里巴巴 &middot; 内外部</div>
+          <h3 class="card-title">阿里技术品牌体系迭代</h3>
+          <p class="card-desc">基于"技术创造新商业"的战略定位，0-1 负责阿里技术整体品牌基础体系搭建，包括技术超级符号 Logo、IP 形象、技术之歌《1024° 的热爱》，并将整体品牌资产在全集团推广运营。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>完成阿里技术 Logo 及 C: 超级符号的创意设计；</li>
+              <li>负责技术之歌创作落地，覆盖全集团 32+ 技术 BU 共同策划演绎 MV，发布当天内外部超 10w 播放量；</li>
+              <li>基于"调研—策略—草图—完稿—方案"全流程落地阿里技术 IP 形象；</li>
+              <li>通过节日营销创意，将阿里技术品牌进行创意图文 / H5 包装，传递品牌背后故事。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-company-tag">阿里巴巴 &middot; 内外部</div>
+          <h3 class="card-title">双11技术线大团建</h3>
+          <p class="card-desc">以"技术荣耀"为调性，2021、2022 年连续两年，从"氛围调性、内容传播、荣耀活动、文化纪念"四方面，全面负责双11技术线大团建项目。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>确认技术线双11主题与 KV，统一线上线下氛围搭建；</li>
+              <li>牵头 CTO 媒体沟通会，年度获 TMT 及官媒总计 500+ 篇媒体报道；技术亮点播放量及阅读量超 100w+；</li>
+              <li>覆盖核心战团 200+ 人，策划"全球连线"直播、"战士出征"晚宴、"答谢英雄卡"H5 互动等仪式环节；</li>
+              <li>设计制作战袍、勋章等双11衍生品牌周边，提供荣耀纪念。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-company-tag">阿里巴巴 &middot; 内外部</div>
+          <h3 class="card-title">1024 阿里技术节</h3>
+          <p class="card-desc">每年10月24日程序员节，利用创意传播玩法，面向内外部所有技术人群，打造专属的不一样的 1024 阿里技术节，传递技术"自豪感、价值感和使命感"。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>0-1 确认整体氛围调性"技术的特有温暖"，策略为"重内容、重传播"；</li>
+              <li>连续三年策划不同线上创意玩法：《你不必懂》《当我们被照亮》创意海报、《技术之歌》发布互动、《你好，技尼斯少年》技术宇宙，年度外部传播声量超 50w+；</li>
+              <li>整合集团 32+ 技术 BU 新媒体共同参与，形成统一基调放大传播。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-company-tag">阿里巴巴 &middot; 对内</div>
+          <h3 class="card-title">奇点杯 &middot; 阿里技术创新季</h3>
+          <p class="card-desc">鼓励阿里技术员工用创新思维与技术力量实现概念验证或形成 MVP，通过初赛、复赛、决赛机制评选10强并给予创新激励。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>策划大赛主题与比赛方向、赛事 PK 策略及分角色分阶段落地节奏；</li>
+              <li>向全集团及生态公司技术员工开放，2021 年收获 150+ ideas，2022 年收获 200+ 创新提案；</li>
+              <li>组织大众评委线上打分（客户价值、创新性、可行性），复赛邀请 P9 专家路演，决赛邀请 P10 专家综合评审；</li>
+              <li>2021 年 1 个项目、2022 年 3 个项目进入业务孵化。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-company-tag">阿里巴巴 &middot; 对内</div>
+          <h3 class="card-title">IdeaLAB 创新平台发布会</h3>
+          <p class="card-desc">ideaLAB 创新应用孵化平台由技术线发起、集团共建，旨在加速创新成果落地。2022年7月20日以全集团发布会形式发布，本人为发布会落地负责人。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>负责 720 发布会整体方案制定与创意策划（主题、视觉、流程、氛围）；</li>
+              <li>协同架构部、业务技术部、OD 等部门完成 CTO 演讲内容与对外传播内容；</li>
+              <li>线下覆盖 500+ 人报告厅，线上直播超 5000 人；</li>
+              <li>整体内部传播量超 3w。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-company-tag">苏宁易购</div>
+          <h3 class="card-title">CES 国际展 / CES Asia 亚洲展</h3>
+          <p class="card-desc">苏宁易购年度重点展会，分别为上海亚洲展与拉斯维加斯国际展，旨在强化苏宁传统电器与深耕数字化能力的绑定认知，提升苏宁技术影响力。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>牵头确认参展主题与展品规划，完成方案并确定展台设计搭建；</li>
+              <li>统筹现场支持、活动组织、传播策划、产品解说、行政后勤等各模块分工；</li>
+              <li>统筹苏宁数字化门店白皮书发布、浪潮/华为战略合作等重要活动；</li>
+              <li>协同官媒、TMT 媒体、垂直渠道、社媒 KOL 全方位传播，整体传播量 1000w+。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-company-tag">苏宁易购</div>
+          <h3 class="card-title">苏宁数字化门店 Biu 店</h3>
+          <p class="card-desc">苏宁数字化能力在线下的核心体现，通过 AI 智能、大数据分析、"店+"智能管理系统等技术手段，历经四次迭代，属行业领先地位。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>深度挖掘数字化门店传播点，形成对外统一口径；</li>
+              <li>三个月整合传播规划，苏宁 Biu 店整体传播量 1000w+；无人店技术（人脸识别、OCR、称重技术）在技术域传播量超 300w+；</li>
+              <li>协同技术研究院产出《苏宁数字化门店白皮书》并发布；</li>
+              <li>密集规划外部行业大会排期，分 C 端、B 端、垂直技术端三个方向策划传播稿件。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-company-tag">苏宁易购</div>
+          <h3 class="card-title">苏宁易购 &times; 东南大学战略合作</h3>
+          <p class="card-desc">以 AI 项目研究与合作为目的，开发东南大学智力资源，建立战略合作关系。本人作为项目负责人，对外牵线校方，对内牵头各研发中心确认合作需求。</p>
+          <button class="card-expand-btn">查看项目达成 &#8595;</button>
+          <div class="card-achievements">
+            <ul>
+              <li>与东大科研院、计算机院、信息学院、经管院、自动化院等多院系洽谈，确认合作内容；</li>
+              <li>成立东南大学苏宁易购智慧零售联合研发中心，建立学生实践基地，首年引进 40+ 计算机专业实习学生；</li>
+              <li>内部调研梳理 170+ 条 AI 项目合作需求，牵头确认校企合作流程与机制；</li>
+              <li>牵头项目管理部、财务部确认费用标准，并协调苏宁小店集团确认选址及运营策略。</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="footer-content" data-aos="fade-up">
+      <p class="footer-motto">Full-Stack, Preparing For AGI</p>
+      <p class="footer-copyright">&#169; 2026 Zhou Chen. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
