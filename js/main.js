@@ -156,6 +156,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeModal();
     emailModal.classList.remove('open');
+    journeyModal.classList.remove('open');
     document.body.style.overflow = '';
     closeMobileMenu();
   }
@@ -176,6 +177,79 @@ if (timelineFill && timelineEl) {
   });
 }
 
+/* ===== TIMELINE CARD ENTRANCE ===== */
+const timelineCards = document.querySelectorAll('.timeline-card');
+
+const cardObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('card-visible');
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 },
+);
+
+timelineCards.forEach((card, i) => {
+  card.style.transitionDelay = `${i * 0.08}s`;
+  cardObserver.observe(card);
+});
+
+/* ===== TIMELINE DOT IN-VIEW ===== */
+const timelineDots = document.querySelectorAll('.timeline-dot');
+
+const dotObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle('in-view', entry.isIntersecting);
+    });
+  },
+  { rootMargin: '-35% 0px -35% 0px' },
+);
+
+timelineDots.forEach((dot) => dotObserver.observe(dot));
+
+/* ===== TIMELINE EXPAND (MODAL) ===== */
+const journeyModal      = document.getElementById('journeyModal');
+const journeyModalClose = document.getElementById('journeyModalClose');
+const journeyModalDate  = document.getElementById('journeyModalDate');
+const journeyModalCo    = document.getElementById('journeyModalCompany');
+const journeyModalRole  = document.getElementById('journeyModalRole');
+const journeyModalBody  = document.getElementById('journeyModalBody');
+
+document.querySelectorAll('.timeline-expand-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const card    = btn.closest('.timeline-card');
+    const item    = btn.closest('.timeline-item');
+    const company = card.querySelector('.timeline-company').textContent;
+    const role    = card.querySelector('.timeline-role').textContent;
+    const date    = item.querySelector('.timeline-date').textContent;
+    const details = card.querySelector('.timeline-details');
+
+    journeyModalDate.textContent = date;
+    journeyModalCo.textContent   = company;
+    journeyModalRole.textContent = role;
+    journeyModalBody.innerHTML   = details.innerHTML;
+
+    journeyModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+journeyModalClose.addEventListener('click', () => {
+  journeyModal.classList.remove('open');
+  document.body.style.overflow = '';
+});
+
+journeyModal.addEventListener('click', (e) => {
+  if (e.target === journeyModal) {
+    journeyModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
 /* ===== PROJECT CARD EXPAND ===== */
 const expandBtns = document.querySelectorAll('.card-expand-btn');
 
@@ -192,6 +266,26 @@ expandBtns.forEach((btn) => {
       : '收起详情 &#8593;';
   });
 });
+
+/* ===== STRENGTHS SLIDE-IN ===== */
+const strengthsColLeft  = document.getElementById('strengthsColLeft');
+const strengthsColRight = document.getElementById('strengthsColRight');
+
+const strengthsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target === strengthsColLeft)  entry.target.classList.add('animate-left');
+        if (entry.target === strengthsColRight) entry.target.classList.add('animate-right');
+        strengthsObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.15 },
+);
+
+if (strengthsColLeft)  strengthsObserver.observe(strengthsColLeft);
+if (strengthsColRight) strengthsObserver.observe(strengthsColRight);
 
 /* ===== LUCIDE ICONS ===== */
 lucide.createIcons();

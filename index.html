@@ -74,6 +74,21 @@
     </div>
   </div>
 
+  <!-- Journey Detail Modal -->
+  <div class="modal-overlay" id="journeyModal" role="dialog" aria-modal="true">
+    <div class="modal-content journey-modal-content">
+      <button class="modal-close-btn" id="journeyModalClose" aria-label="关闭">&#10005;</button>
+      <div class="journey-modal-header">
+        <div class="journey-modal-company-row">
+          <div class="journey-modal-company" id="journeyModalCompany"></div>
+          <div class="journey-modal-date" id="journeyModalDate"></div>
+        </div>
+        <div class="journey-modal-role" id="journeyModalRole"></div>
+      </div>
+      <div class="journey-modal-body" id="journeyModalBody"></div>
+    </div>
+  </div>
+
   <!-- WeChat Modal -->
   <div class="modal-overlay" id="wechatModal" role="dialog" aria-modal="true" aria-label="联系方式">
     <div class="modal-content">
@@ -96,7 +111,12 @@
     <div class="hero-bg" id="heroBg">
       <div class="hero-bg-circle hero-bg-circle--1"></div>
       <div class="hero-bg-circle hero-bg-circle--2"></div>
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+      <div class="hero-orb hero-orb--3"></div>
     </div>
+
+    <div class="hero-dotgrid"></div>
 
     <div class="hero-person" id="heroPerson">
       <img src="assets/images/hero-photo.png" alt="Zhou Chen">
@@ -126,7 +146,7 @@
 
       <div class="strengths-grid">
         <!-- Left: Professional Edge -->
-        <div class="strengths-col" data-aos="fade-right" data-aos-delay="100">
+        <div class="strengths-col strengths-col--left" id="strengthsColLeft">
           <div class="col-header">
             <h3>Professional Advantage</h3>
             <p class="col-subtitle">专业优势</p>
@@ -156,7 +176,7 @@
         </div>
 
         <!-- Right: AI Advantage -->
-        <div class="strengths-col" data-aos="fade-left" data-aos-delay="100">
+        <div class="strengths-col strengths-col--right" id="strengthsColRight">
           <div class="col-header">
             <h3>AI Advantage</h3>
             <p class="col-subtitle">AI 优势</p>
@@ -198,71 +218,140 @@
           <div class="timeline-track-fill" id="timelineFill"></div>
         </div>
 
-        <!-- Entry 1 -->
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="50">
-          <div class="timeline-dot"></div>
-          <div class="timeline-meta">
-            <span class="timeline-date">2009.07 – 2012.03</span>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-company">富士康科技集团</div>
-            <div class="timeline-role">软件开发工程师 &nbsp;·&nbsp; 工管资讯事业群 MES 事业部</div>
-            <p class="timeline-desc">熟悉 C# 语言，熟练基于 ASP.NET 的 Web 开发，熟练使用 VS；熟悉 SQLServer 等主流数据库，根据设计文档或需求说明完成 MES 系统的代码编写、调试、测试和维护。</p>
-          </div>
-        </div>
-
-        <!-- Entry 2 -->
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="timeline-dot"></div>
-          <div class="timeline-meta">
-            <span class="timeline-date">2012.03 – 2015.04</span>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-company">南京三宝科技股份有限公司</div>
-            <div class="timeline-role">市场营销 / 技术支持 &nbsp;·&nbsp; 集团市场部智能交通业务</div>
-            <p class="timeline-desc">负责智能交通行业市场洞察与竞品分析；规划撰写公司宣传内容，管理官网与 OA 新闻平台；策划执行行业会议会展；负责公司产品展示内容策划与展厅持续运营。</p>
-          </div>
-        </div>
-
-        <!-- Entry 3 -->
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
-          <div class="timeline-dot"></div>
-          <div class="timeline-meta">
-            <span class="timeline-date">2015.05 – 2020.04</span>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-company">苏宁易购</div>
-            <div class="timeline-role">技术体系品牌负责人（技术品牌总监）</div>
-            <p class="timeline-desc">全面负责易购技术品牌在行业内的影响力建设，以"场景零售 OS—RaaS"为品牌传播心智，统筹技术体系活动营销、内容传播、媒介维护、开发者运营及生态合作（三方企业、高校、协会学会等），输出易购技术影响力。</p>
-          </div>
-        </div>
-
-        <!-- Entry 4 -->
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-          <div class="timeline-dot"></div>
-          <div class="timeline-meta">
-            <span class="timeline-date">2020.04 – 2024.06</span>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-company">阿里巴巴</div>
-            <div class="timeline-role">技术品牌专家 &nbsp;·&nbsp; CTO 办公室 / 技术文化部门</div>
-            <p class="timeline-desc">通过品牌事件打造、创意内容策划、技术干货传播、技术文化运营、内外部社区协作，对内增强员工认同感，对外提升阿里技术影响力。主导 1024 技术节、双 11 技术大团建、奇点杯·技术创新季等年度重点品牌 IP。</p>
-          </div>
-        </div>
-
-        <!-- Entry 5 (current) -->
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="250">
-          <div class="timeline-dot timeline-dot--current"></div>
-          <div class="timeline-meta">
+        <!-- Item 1: card RIGHT -->
+        <div class="timeline-item">
+          <div class="tl-spacer">
             <span class="timeline-date">2024.08 – 至今</span>
           </div>
-          <div class="timeline-card timeline-card--current">
-            <span class="timeline-now-tag">进行中</span>
-            <div class="timeline-company">罗莱生活科技股份有限公司</div>
-            <div class="timeline-role">人力资源总监兼 OC 负责人</div>
-            <p class="timeline-desc">基于组织方法论，以业务与组织双视角，从"活力、创新和协同"三个维度构建组织文化解决方案，制定并推动年度组织文化在全公司落地。推动 AI 数智化激励体系建设，主导价值观升级（"客户为先"升级为"用户为先"）及重点文化项目落地。</p>
+          <div class="tl-axis">
+            <div class="timeline-dot timeline-dot--current"></div>
+          </div>
+          <div class="tl-card">
+            <div class="timeline-card timeline-card--current">
+              <div class="timeline-company">罗莱生活科技股份有限公司</div>
+              <div class="timeline-role">人力资源总监兼 OC 负责人</div>
+              <p class="timeline-desc">基于组织方法论，以业务与组织双视角，从"活力、创新和协同"三个维度构建组织文化解决方案，制定并推动年度组织文化在全公司落地。</p>
+              <button class="timeline-expand-btn">查看详细职责</button>
+              <div class="timeline-details">
+                <ul>
+                  <li><strong>战报与文化沟通：</strong>推动集团月度战报、关键战役战报及项目型宣传等多层级沟通机制；设计配套激励体系，使战果可视化、贡献可感知，增强组织士气与团队荣誉感。</li>
+                  <li><strong>AI 数智化激励体系：</strong>以年度创新激励、AI 专项激励为牵引，协同 AI 数字化部门，从 AI 全员直播、AI 效率大赛等项目推动全员 AI 应用落地，提升组织数智化能力。</li>
+                  <li><strong>价值观升级：</strong>通过高管深度访谈、组织调研和全员共创机制，自下而上推动公司使命与价值观升级，将"客户为先"升级为"用户为先"，并系统推进文化建设与行为落地。</li>
+                  <li><strong>重点文化项目：</strong>围绕活力、创新、协同三个方向，主导双 11 战役文化、罗莱年度年会、年度氛围焕新、罗莱生活家居博物馆等重点项目，以场景化方式提升组织活力与文化感知度。</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Item 2: card LEFT (alt) -->
+        <div class="timeline-item timeline-item--alt">
+          <div class="tl-spacer">
+            <span class="timeline-date">2020.04 – 2024.06</span>
+          </div>
+          <div class="tl-axis">
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="tl-card">
+            <div class="timeline-card">
+              <div class="timeline-company">阿里巴巴</div>
+              <div class="timeline-role">技术品牌专家 &nbsp;·&nbsp; CTO 办公室 / 技术文化部门</div>
+              <p class="timeline-desc">通过品牌事件打造、创意内容策划、技术干货传播、技术文化运营、内外部社区协作，对内增强员工认同感，对外提升阿里技术影响力。</p>
+              <button class="timeline-expand-btn">查看详细职责</button>
+              <div class="timeline-details">
+                <ul>
+                  <li><strong>品牌规划：</strong>基于集团"技术创造新商业"战略及 CTO 年度 OKR 关键词分解，负责集团技术年度重点品牌策略规划（2020年"稳"、2021年"协同"、2022年"创新"）。</li>
+                  <li><strong>品牌建设：</strong>0-1 建立与完善阿里技术品牌体系，包括视觉体系、品牌 IP、品牌释义与规范标准，确保内外部表达一致。</li>
+                  <li><strong>品牌事件：</strong>对内打造年度技术盛典、技术创新季；对外打造 1024 技术节、双 11 技术大团建等年度品牌 IP，全流程负责方案创意、资源协同、执行落地。</li>
+                  <li><strong>传播策划：</strong>与产研、PMO、PR 等团队紧密合作，负责 CTO 内外部发言内容、技术亮点梳理，通过媒介渠道提升阿里技术行业影响力。</li>
+                  <li><strong>技术交流：</strong>联合 OD 部门，在技术节、战役会、创新日等场合，邀请外部技术社区、高校教授、技术媒体，组织策划技术 Meetup 活动。</li>
+                  <li><strong>媒介对接：</strong>保持与 InfoQ、CSDN、51CTO、ITPUB 等知名 TMT 及技术媒体的对接维护与内容合作（投稿、采访、站台等）。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: card RIGHT -->
+        <div class="timeline-item">
+          <div class="tl-spacer">
+            <span class="timeline-date">2015.05 – 2020.04</span>
+          </div>
+          <div class="tl-axis">
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="tl-card">
+            <div class="timeline-card">
+              <div class="timeline-company">苏宁易购</div>
+              <div class="timeline-role">技术体系品牌负责人（技术品牌总监）</div>
+              <p class="timeline-desc">全面负责易购技术品牌在行业内的影响力建设，以"场景零售 OS—RaaS"为品牌传播心智，统筹技术体系活动营销、内容传播、媒介维护、开发者运营及生态合作。</p>
+              <button class="timeline-expand-btn">查看详细职责</button>
+              <div class="timeline-details">
+                <ul>
+                  <li><strong>品牌定位：</strong>调研梳理并提炼以"场景零售 OS—RaaS，Retail as a Service"为技术体系品牌传播心智，制定"技术影响力"品牌目标。</li>
+                  <li><strong>品牌资产管理：</strong>负责技术体系品牌与传播资产管理，包括基础品牌 VI、相关制度建设、宣传载体建设等，确保内外部表达一致性。</li>
+                  <li><strong>会议活动：</strong>统筹技术体系所有内外部会议项目的方案策划、传播内容、活动执行与效果评估，涵盖全球软件开发大会、架构师大会、人工智能大会、全球 CES 电子展等。</li>
+                  <li><strong>内容运营：</strong>与产研、营销、UED 等团队紧密合作，统筹对外内容管理与运营，包括口径统一、亮点挖掘、文案撰写、案例包装、奖项申报、媒介传播等。</li>
+                  <li><strong>媒介公关：</strong>建立技术体系与 TMT 科技媒体、生态伙伴和行业资源的合作关系，通过市场活动、内容合作、品牌投放等方式日常拓展和维系。</li>
+                  <li><strong>开发者运营：</strong>以"请进来，走出去"策略，通过"苏宁技术交流日"Meetup 扩大苏宁技术影响力。</li>
+                  <li><strong>学术合作：</strong>统筹苏宁技术体系与高校合作推进，包括苏宁易购 × 东南大学战略合作、苏宁技术 × 清华大学国际 AIOps 挑战赛等。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: card LEFT (alt) -->
+        <div class="timeline-item timeline-item--alt">
+          <div class="tl-spacer">
+            <span class="timeline-date">2012.03 – 2015.04</span>
+          </div>
+          <div class="tl-axis">
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="tl-card">
+            <div class="timeline-card">
+              <div class="timeline-company">南京三宝科技股份有限公司</div>
+              <div class="timeline-role">市场营销 / 技术支持 &nbsp;·&nbsp; 集团市场部智能交通业务</div>
+              <p class="timeline-desc">负责智能交通行业市场洞察与竞品分析；规划撰写公司宣传内容，管理官网与 OA 新闻平台；策划执行行业会议会展；负责公司产品展示内容策划与展厅持续运营。</p>
+              <button class="timeline-expand-btn">查看详细职责</button>
+              <div class="timeline-details">
+                <ul>
+                  <li><strong>市场洞察：</strong>通过专业网站、新闻渠道、客户访谈等，分析智能交通行业动态，关注竞品发展并进行归纳总结，提供产品建议。</li>
+                  <li><strong>内容运营：</strong>规划、撰写公司各类宣传内容，如新闻稿、自媒体稿、产品手册等；负责官方网站、OA 新闻平台的运维管理。</li>
+                  <li><strong>活动营销：</strong>负责智能交通相关会议会展的方案策划、组织筹备与执行实施。</li>
+                  <li><strong>展厅运营：</strong>策划公司产品展示内容，形成展品演示与介绍，支持公司各项营销活动及展厅持续运营工作。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5: card RIGHT -->
+        <div class="timeline-item">
+          <div class="tl-spacer">
+            <span class="timeline-date">2009.07 – 2012.03</span>
+          </div>
+          <div class="tl-axis">
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="tl-card">
+            <div class="timeline-card">
+              <div class="timeline-company">富士康科技集团</div>
+              <div class="timeline-role">软件开发工程师 &nbsp;·&nbsp; 工管资讯事业群 MES 事业部</div>
+              <p class="timeline-desc">熟悉 C# 语言，熟练基于 ASP.NET 的 Web 开发，熟练使用 VS；熟悉 SQLServer 等主流数据库，根据设计文档或需求说明完成 MES 系统的代码编写、调试、测试和维护。</p>
+              <button class="timeline-expand-btn">查看详细职责</button>
+              <div class="timeline-details">
+                <ul>
+                  <li><strong>系统开发：</strong>基于 ASP.NET 框架完成 MES 制造执行系统的 Web 端功能开发，使用 C# 语言编写业务逻辑代码，熟练使用 Visual Studio 开发工具。</li>
+                  <li><strong>数据库：</strong>熟悉 SQLServer 等主流数据库的设计与操作，根据需求说明编写数据库查询与存储过程。</li>
+                  <li><strong>测试维护：</strong>根据设计文档完成系统代码编写、调试、测试与日常维护工作，保障 MES 系统稳定运行。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -271,7 +360,7 @@
   <section id="projects">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">FEATURED PROJECTS</h2>
+        <h2 class="section-title">MY PROJECTS</h2>
         <p class="section-subtitle">精彩项目</p>
         <div class="section-divider"></div>
       </div>
