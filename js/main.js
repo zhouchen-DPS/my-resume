@@ -250,21 +250,31 @@ journeyModal.addEventListener('click', (e) => {
   }
 });
 
-/* ===== PROJECT CARD EXPAND ===== */
-const expandBtns = document.querySelectorAll('.card-expand-btn');
-
-expandBtns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const card         = btn.closest('.project-card');
-    const achievements = card.querySelector('.card-achievements');
-    const isOpen       = achievements.classList.contains('open');
-
-    achievements.classList.toggle('open');
-    btn.innerHTML = isOpen
-      ? '查看项目达成 &#8595;'
-      : '收起详情 &#8593;';
+/* ===== PROJECT CARD — click whole card to expand ===== */
+document.querySelectorAll('.project-card').forEach((card) => {
+  card.addEventListener('click', () => {
+    card.querySelector('.card-achievements').classList.toggle('open');
   });
+});
+
+/* ===== PROJECT CARD STAGGER ANIMATION ===== */
+const projectCards = document.querySelectorAll('.project-card');
+
+const projectCardObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('pc-visible');
+        projectCardObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.10 }
+);
+
+projectCards.forEach((card, i) => {
+  card.style.transitionDelay = `${i * 0.07}s`;
+  projectCardObserver.observe(card);
 });
 
 /* ===== STRENGTHS SLIDE-IN ===== */

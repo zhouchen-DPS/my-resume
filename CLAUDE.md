@@ -49,18 +49,20 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 
 | Layer | Element | z-index | Notes |
 |---|---|---|---|
-| 1 — Background | `.hero-bg#heroBg` | auto | Dark teal gradient; contains orbs + noise pseudo-element |
+| 1 — Background | `.hero-bg#heroBg` | auto | Light sky blue gradient; contains orbs + noise pseudo-element |
 | 1.5 — Dot Grid | `.hero-dotgrid` | 0 | Between bg and person; pure CSS dot pattern |
-| 2 — Person photo | `.hero-person#heroPerson` | 1 | PNG cutout with bottom fade mask |
-| 3 — Text content | `.hero-content` | 2 | Always above person |
+| 2 — Person photo | `.hero-person#heroPerson` | 1 | PNG cutout with bottom fade mask; `right: 18%` |
+| 3 — Text content | `.hero-content` | 2 | Always above person; `padding-left: 12%` |
 
 ### Hero Visual Effects
 
+**Background gradient**: `linear-gradient(135deg, #d4edf8 0%, #7ec4de 45%, #42a8cc 100%)` — light sky blue palette.
+
 **Mesh Gradient Orbs** — three `<div class="hero-orb hero-orb--N">` inside `.hero-bg`:
-- Orb 1 (light blue, 600px, `blur(90px)`): `orbDrift1` 28s
-- Orb 2 (purple, 500px): `orbDrift2` 34s
-- Orb 3 (cyan, 400px): `orbDrift3` 22s
-- No `mix-blend-mode` — opacity carried by `radial-gradient` color stops (0.35–0.55)
+- Orb 1 (white, 600px, `blur(90px)`): `orbDrift1` 28s — `rgba(255,255,255,0.50)`
+- Orb 2 (light blue, 500px): `orbDrift2` 34s — `rgba(180,230,255,0.40)`
+- Orb 3 (pale blue, 400px): `orbDrift3` 22s — `rgba(220,248,255,0.30)`
+- No `mix-blend-mode` — opacity carried by `radial-gradient` color stops
 
 **Noise Texture** — `.hero-bg::after` pseudo-element:
 - SVG `feTurbulence` (`fractalNoise`, baseFrequency 0.75, 4 octaves) as `background-image` data URI
@@ -126,11 +128,34 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 
 ## Projects Section
 
-**Project cards** (`.project-card`):
-- `.card-achievements` is hidden by default (`max-height: 0`, `overflow: hidden`)
-- `.card-expand-btn` click toggles `.open` class, uses `max-height` transition for smooth accordion
-- Button text toggles between "查看项目达成 ↓" and "收起详情 ↑"
-- 8 cards in a 2-column responsive grid
+**Background**: deep teal gradient `linear-gradient(135deg, #1a4a62 0%, #143d54 50%, #0e2f42 100%)`.
+Section title/subtitle/divider use white-tinted colors for the dark background.
+
+**Bento Box Grid** (`.projects-grid`):
+- `grid-template-columns: repeat(3, 1fr)`, `gap: 14px`
+- Cards 1,4,5,8 → `grid-column: span 2`; cards 2,3,6,7 → `grid-column: span 1`
+- Pattern: `2-1 / 1-2 / 2-1 / 1-2` (alternating, creates visual rhythm)
+- Mobile (`< 768px`): all cards `span 1`, single column
+
+**Glassmorphism cards** (`.project-card`):
+- `background: rgba(255,255,255,0.07)`, `backdrop-filter: blur(20px)`, `border-radius: 20px`
+- `border: 1px solid rgba(255,255,255,0.13)`
+- Edge highlight: `box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 1px 0 0 rgba(255,255,255,0.06)` — simulates glass/metal top-left edge
+- Hover: `rgba(255,255,255,0.11)`, `translateY(-5px)`, deeper shadow
+
+**Typography**:
+- `.card-title`: `Inter 800`, `rgba(255,255,255,0.95)`, `letter-spacing: -0.2px`
+- `.card-desc`: `Noto Sans SC`, `line-height: 1.6`, `rgba(255,255,255,0.58)`
+- `.card-company-tag`: light-blue tinted pill, `rgba(180,220,245,0.85)`
+
+**Expand interaction**:
+- No `.card-expand-btn` button — clicking the **entire card** toggles `.open` on `.card-achievements`
+- `.card-achievements.open`: `border-top-color: rgba(255,255,255,0.10)`
+
+**Stagger entrance animation**:
+- Cards start `opacity:0; transform:translateY(20px)`
+- IntersectionObserver (threshold 0.10) adds `.pc-visible` → `opacity:1; transform:translateY(0)`
+- Stagger via inline `transitionDelay: i * 0.07s` on each card
 
 ## Contact Floats
 
@@ -151,7 +176,8 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 | Timeline card entrance | IntersectionObserver (threshold 0.12); adds `.card-visible`; stagger via `transitionDelay` |
 | Timeline dot in-view | IntersectionObserver (rootMargin `-35% 0px -35% 0px`) toggles `.in-view` on dots |
 | Journey modal | `.timeline-expand-btn` click populates and opens `#journeyModal` from card data |
-| Project expand | Click `.card-expand-btn` toggles `.open` on sibling `.card-achievements` |
+| Project expand | Click anywhere on `.project-card` toggles `.open` on `.card-achievements` (no button) |
+| Project stagger | IntersectionObserver (threshold 0.10) adds `.pc-visible`; stagger via `transitionDelay i * 0.07s` |
 | WeChat modal | `#wechatBtn` → `#wechatModal.open`; close on overlay click or ESC |
 | Email modal | `#emailBtn` → `#emailModal.open`; same close behavior (shows email address only, no mailto) |
 | Mobile menu | `#hamburger` → `#mobileOverlay.open`; `document.body.style.overflow` toggled |
@@ -160,5 +186,5 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 
 - **Strengths icons** — use Lucide icon names (`data-lucide="..."`) on `<i class="item-icon">` elements; `lucide.createIcons()` renders them
 - **Timeline entries** — add `.timeline-item` / `.timeline-item--alt` blocks alternately inside `.timeline`; current role uses `.timeline-dot--current` and `.timeline-card--current`
-- **Project cards** — add `.project-card` inside `.projects-grid`; `.card-achievements` is hidden by default and toggled via JS
+- **Project cards** — add `.project-card` inside `.projects-grid`; no button needed — click the whole card to expand `.card-achievements`; nth-child span assignment is automatic via CSS
 - **Hero orb tuning** — adjust opacity in `radial-gradient` color stops and `filter: blur()` value; do NOT use `mix-blend-mode` (see note above)
