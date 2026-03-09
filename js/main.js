@@ -251,9 +251,13 @@ journeyModal.addEventListener('click', (e) => {
 });
 
 /* ===== PROJECT CARD — click whole card to expand ===== */
-document.querySelectorAll('.project-card').forEach((card) => {
+const allProjectCards = document.querySelectorAll('.project-card');
+allProjectCards.forEach((card) => {
   card.addEventListener('click', () => {
-    card.querySelector('.card-achievements').classList.toggle('open');
+    const achievements = card.querySelector('.card-achievements');
+    const isOpen = achievements.classList.contains('open');
+    allProjectCards.forEach((c) => c.querySelector('.card-achievements').classList.remove('open'));
+    if (!isOpen) achievements.classList.add('open');
   });
 });
 
