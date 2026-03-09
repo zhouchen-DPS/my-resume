@@ -102,6 +102,12 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 - Entrance animation: start `opacity:0; transform:translateY(32px)`, transition to visible via `.card-visible` class
 - IntersectionObserver (threshold 0.12) adds `.card-visible`; stagger via inline `transitionDelay` (`i * 0.08s`)
 - Current role uses `.timeline-dot--current` and `.timeline-card--current` (teal left border accent)
+- Current role company: **罗莱生活** (数智化组织发展总监, 2024.08–至今)
+
+**Timeline detail content** (`.timeline-details`):
+- Uses `<ul>` with numbered `<li>` items (e.g. `1、品牌规划：...`) — verbatim from resume
+- Sub-items use nested `<ul><li>` (e.g. `（1）【内外部】...`)
+- 富士康 entry has a single `<li>` paragraph (no numbered list)
 
 **Timeline dot in-view** — dotObserver (rootMargin `-35% 0px -35% 0px`) toggles `.in-view` on `.timeline-dot`
 
@@ -151,6 +157,8 @@ Section title/subtitle/divider use white-tinted colors for the dark background.
 **Expand interaction**:
 - No `.card-expand-btn` button — clicking the **entire card** toggles `.open` on `.card-achievements`
 - `.card-achievements.open`: `border-top-color: rgba(255,255,255,0.10)`
+- `.card-achievements li`: `text-align: justify` — all achievement text is justified
+- Achievement content uses numbered `<li>` items verbatim from resume; sub-items use nested `<ul><li>`
 
 **Stagger entrance animation**:
 - Cards start `opacity:0; transform:translateY(20px)`

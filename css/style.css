@@ -595,7 +595,7 @@ button {
   display: flex;
   align-items: flex-end;
   will-change: transform;
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero-person img {
@@ -654,7 +654,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.50);
   padding: 6px 18px;
   border-radius: 20px;
-  margin-bottom: 28px;
+  margin-bottom: 40px;
   opacity: 0;
   transform: translateY(20px);
 }
@@ -666,19 +666,19 @@ button {
   color: var(--white);
   letter-spacing: -2px;
   line-height: 0.92;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
   text-shadow: 0 2px 20px rgba(20, 90, 130, 0.20);
   opacity: 0;
   transform: translateY(30px);
 }
 
 .hero-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(15px, 2vw, 21px);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: clamp(14px, 1.8vw, 19px);
   font-weight: 300;
   color: rgba(255, 255, 255, 0.90);
   letter-spacing: 0.5px;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   text-shadow: 0 1px 8px rgba(20, 90, 130, 0.15);
   opacity: 0;
   transform: translateY(30px);
@@ -1177,19 +1177,19 @@ section {
 /* ===== PROJECTS ===== */
 /* ===== PROJECTS ===== */
 #projects {
-  background: radial-gradient(ellipse at center, #172A45 0%, #0A192F 100%);
+  background: linear-gradient(to bottom, #d6eaf8 0%, #ffffff 100%);
 }
 
 #projects .section-title {
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-dark);
 }
 
 #projects .section-subtitle {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(44, 62, 80, 0.55);
 }
 
 #projects .section-divider {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(44, 62, 80, 0.2);
 }
 
 /* ── Bento Grid ── */
@@ -1352,6 +1352,7 @@ section {
   color: rgba(255, 255, 255, 0.88);
   padding-left: 16px;
   position: relative;
+  text-align: justify;
 }
 
 .card-achievements li::before {
