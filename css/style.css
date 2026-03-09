@@ -608,6 +608,28 @@ button {
   user-select: none;
 }
 
+/* ── Hero person info badge ── */
+.hero-person-info {
+  position: absolute;
+  bottom: 12%;
+  left: 100%;
+  padding-left: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-person-info span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0;
+}
+
 .hero-photo-placeholder {
   width: 280px;
   height: 100%;
@@ -1441,6 +1463,10 @@ footer {
     transform: translateX(50%);
     height: 60%;
     opacity: 0.65;
+  }
+
+  .hero-person-info {
+    display: none;
   }
 
   .hero-content {

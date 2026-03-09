@@ -51,7 +51,7 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 |---|---|---|---|
 | 1 — Background | `.hero-bg#heroBg` | auto | Light sky blue gradient; contains orbs + noise pseudo-element |
 | 1.5 — Dot Grid | `.hero-dotgrid` | 0 | Between bg and person; pure CSS dot pattern |
-| 2 — Person photo | `.hero-person#heroPerson` | 1 | PNG cutout with bottom fade mask; `right: 18%` |
+| 2 — Person photo | `.hero-person#heroPerson` | 1 | PNG cutout with bottom fade mask; `right: 18%`; contains `.hero-person-info` |
 | 3 — Text content | `.hero-content` | 2 | Always above person; `padding-left: 12%` |
 
 ### Hero Visual Effects
@@ -71,6 +71,12 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 **Dot Grid** — `.hero-dotgrid`:
 - `radial-gradient` 1.5px white dots, `background-size: 28px 28px`
 - Fades at edges via single `mask-image: radial-gradient(ellipse 80% 80% ...)`
+
+**Personal info badge** — `.hero-person-info` inside `.hero-person`:
+- `position: absolute; left: 100%; padding-left: 14px; bottom: 12%` — right edge of person, leg-level
+- Three `<span>` lines: `周晨 · 40 YEARS OLD` / `东南大学 · 硕士` / `计算机科学与技术 & 工商管理MBA`
+- Font: `JetBrains Mono`, `0.75rem`, `rgba(0,0,0,0.6)`, left-aligned, `white-space: nowrap`
+- Hidden on mobile (`< 768px`) via `display: none`
 
 > **Avoid `mix-blend-mode`** on elements inside `.hero-bg`: it has `will-change: transform` which creates an isolated compositing layer, causing blend modes to fail unexpectedly.
 
