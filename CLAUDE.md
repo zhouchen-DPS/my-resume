@@ -75,7 +75,7 @@ Three stacked layers (bottom to top), all children of `<section id="hero">`:
 **Personal info badge** — `.hero-person-info` inside `.hero-person`:
 - `position: absolute; left: 100%; padding-left: 14px; bottom: 12%` — right edge of person, leg-level
 - Three `<span>` lines: `周晨 · 40 YEARS OLD` / `东南大学 · 硕士` / `计算机科学与技术 & 工商管理MBA`
-- Font: `JetBrains Mono`, `0.75rem`, `rgba(0,0,0,0.6)`, left-aligned, `white-space: nowrap`
+- Font: `DengXian`/`等线`/`Microsoft YaHei`, `0.875rem`, `rgba(0,0,0,0.8)`, left-aligned, `white-space: nowrap`
 - Hidden on mobile (`< 768px`) via `display: none`
 
 > **Avoid `mix-blend-mode`** on elements inside `.hero-bg`: it has `will-change: transform` which creates an isolated compositing layer, causing blend modes to fail unexpectedly.
